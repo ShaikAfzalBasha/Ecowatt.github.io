@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECOWATT</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Splash Screen */
+        .splash-screen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(145deg, #006d34, #2e8b57);
+            color: white;
+            text-align: center;
+            flex-direction: column;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .splash-title {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .splash-description {
+            font-size: 1.2em;
+            max-width: 80%;
+            margin-bottom: 30px;
+            line-height: 1.5;
+            color: #e0f7fa;
+        }
+
+        .splash-button {
+            padding: 12px 25px;
+            background-color: #43a047;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .splash-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #26a75e;
+            color: white;
+            width: 100%;
+            height: 60px;
+            display: none; /* Initially hidden */
+        }
+
+        .nav h2 {
+            font-size: 2.3em;
+        }
+
+        .nav div {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+        }
+
+        .nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Additional Styling for Pages */
+        .page-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 400px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .page-container h2 {
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            background-color: #43a047;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        /* Summary Page */
+        .summary-container {
+            text-align: left;
+        }
+
+        .summary-item {
+            font-size: 1em;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f4c3;
+            border-radius: 5px;
+        }
+
+        .summary-item p {
+            margin: 5px 0;
+        }
+
+        /* Total Points Page */
+        .total-points-container {
+            text-align: center;
+            padding: 40px;
+            background-color: #e8f5e9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .total-points-container h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .total-points-container p {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <h1 class="splash-title">Welcome to ECOWATT!</h1>
+        <p class="splash-description">
+            Making recycling easy and rewarding. Together, let's reduce e-waste and create a sustainable future.
+        </p>
+        <button class="splash-button" onclick="goToLogin()">Get Started</button>
+    </div>
+
+    <!-- Navigation (visible after login) -->
+    <div class="nav" id="navBar">
+        <h2>ECOWATT</h2>
+        <div>
+            <a href="aboutus.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="#" onclick="goToLogin()">Sign In</a>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div class="page-container" id="loginPage">
+        <div class="container">
+            <img src="https://drive.google.com/thumbnail?id=1rvYLdkXp46Qy4Q30BIsGH_Vz32QsVJQX" alt="Login Image" style="width: 150px; margin-bottom: 20px;">
+            <h2>Login</h2>
+            <input type="text" class="input-field" placeholder="Phone Number" required>
+            <input type="password" class="input-field" placeholder="Password">
+            <button class="button" onclick="goToRecycle()">Login</button>
+            <p style="margin-top: 10px; font-size: 0.9em; color: #666;">
+                Note: Default password is 123
+            </p>
+            
+        </div>
+    </div>
+
+    <!-- Recycle Page -->
+    <div class="page-container" id="recyclePage">
+        <div class="container">
+            <h2>How many items would you like to recycle?</h2>
+            <input type="number" id="itemCount" class="input-field" placeholder="Enter number of items" min="1" required>
+            <button class="button" onclick="goToOptions()">Add to Cart</button>
+        </div>
+    </div>
+
+    <!-- Options Page -->
+    <div class="page-container" id="optionsPage">
+        <div class="container">
+            <h2>Select Item Types</h2>
+            <div id="dropdownContainer"></div>
+
+            <!-- Data Wipe Checkbox -->
+            <label>
+                <input type="checkbox" id="dataWipeNeeded"> Request data wipe for my devices
+            </label>
+
+            <button class="button" onclick="goToAddress()">Continue</button>
+        </div>
+    </div>
+
+    <!-- Address Page -->
+    <div class="page-container" id="addressPage">
+        <div class="container">
+            <h2>Pickup Details</h2>
+            <input type="text" id="address" class="input-field" placeholder="📍Enter your address" required>
+            <input type="text" id="location" class="input-field" placeholder="🌍Enter your location" required>
+            <input type="number" id="pincode" class="input-field" placeholder="📬Enter your pincode" required>
+            <input type="tel" id="phoneNumber" class="input-field" placeholder="📞Enter your phone number" required>
+            <button class="button" onclick="confirmAddress()">Submit for Pickup</button>
+        </div>
+    </div>
+
+    <!-- Summary Page -->
+    <div class="page-container" id="summaryPage">
+        <div class="container summary-container">
+            <h2>Summary of Your Order</h2>
+            <div id="summaryContainer"></div>
+            <button class="button" onclick="showTotalPoints()">Finish</button>
+        </div>
+    </div>
+
+    <!-- Total Points Page -->
+    <div class="page-container" id="totalPointsPage">
+        <div class="container total-points-container">
+            <h2>Total Reward Points</h2>
+            <p id="totalPointsDisplay"></p>
+            <p>These points can be used to get discounts on electronic gadgets!</p>
+            <button class="button" onclick="restartApp()">Go to Home</button>
+        </div>
+    </div>
+
+    <script>
+        let totalPoints = 0; // Variable to store total points
+
+        function goToLogin() {
+            document.getElementById('splashScreen').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'flex';
+        }
+
+        function goToRecycle() {
+    const phoneNumber = document.querySelector('#loginPage input[type="text"]').value;
+    const password = document.querySelector('#loginPage input[type="password"]').value;
+    
+    if (!phoneNumber || !password) {
+        alert("Please enter both phone number and password.");
+        return;
+    }
+    
+    document.getElementById('loginPage').style.display = 'none';
+    document.getElementById('navBar').style.display = 'flex';
+    document.getElementById('recyclePage').style.display = 'flex';
+}
+
+
+function goToOptions() {
+    const itemCount = document.getElementById('itemCount').value;
+    if (!itemCount || itemCount < 1) {
+        alert("Please enter a valid number of items.");
+        return;
+    }
+    document.getElementById('recyclePage').style.display = 'none';
+    document.getElementById('optionsPage').style.display = 'flex';
+    
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    dropdownContainer.innerHTML = '';
+
+    for (let i = 0; i < itemCount; i++) {
+        const select = document.createElement('select');
+        select.classList.add('input-field');
+        select.innerHTML = `
+            <option value="" disabled selected>Select the item</option>
+            <option value="Mobile">Mobile</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Computer">Computer</option>
+            <option value="Tablet">Tablet</option>
+            <option value="Other">Other</option>
+        `;
+        const input = document.createElement('input');
+        input.classList.add('input-field');
+        input.placeholder = "Specify Other Item";
+        input.style.display = 'none'; // Hide initially
+        dropdownContainer.appendChild(select);
+        dropdownContainer.appendChild(input);
+
+        // Event listener to show input field when "Other" is selected
+        select.addEventListener('change', function() {
+            if (this.value === 'Other') {
+                input.style.display = 'block'; // Show input field
+                input.required = true; // Make it required
+            } else {
+                input.style.display = 'none'; // Hide input field
+                input.value = ''; // Clear the input if not selected
+                input.required = false; // Make it not required
+            }
+        });
+    }
+}
+
+
+
+        function goToAddress() {
+            document.getElementById('optionsPage').style.display = 'none';
+            document.getElementById('addressPage').style.display = 'flex';
+        }
+
+        function confirmAddress() {
+            const address = document.getElementById('address').value;
+            const location = document.getElementById('location').value;
+            const pincode = document.getElementById('pincode').value;
+            const phoneNumber = document.getElementById('phoneNumber').value;
+
+            if (!address || !location || !pincode || !phoneNumber) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            document.getElementById('addressPage').style.display = 'none';
+            document.getElementById('summaryPage').style.display = 'flex';
+
+            const summaryContainer = document.getElementById('summaryContainer');
+            summaryContainer.innerHTML = `
+                <div class="summary-item"><strong>Items to Recycle:</strong> ${document.getElementById('itemCount').value}</div>
+                <div class="summary-item"><strong>Address:</strong> ${address}</div>
+                <div class="summary-item"><strong>Location:</strong> ${location}</div>
+                <div class="summary-item"><strong>Pincode:</strong> ${pincode}</div>
+                <div class="summary-item"><strong>Phone Number:</strong> ${phoneNumber}</div>
+                <div class="summary-item"><strong>Data Wipe:</strong> ${document.getElementById('dataWipeNeeded').checked ? 'Yes' : 'No'}</div>
+            `;
+        }
+
+        function showTotalPoints() {
+    document.getElementById('summaryPage').style.display = 'none';
+    document.getElementById('totalPointsPage').style.display = 'flex';
+
+    // Retrieve item types selected by the user
+    const dropdownContainer = document.getElementById('dropdownContainer');
+    let pointsEarned = 0;
+
+    // Points assigned per item type
+    const pointsMap = {
+        "Laptop": 100,
+        "Mobile": 70,
+        "Computer": 50,
+        "Tablet": 30,
+        "Other": 0    // Points to be given after pickup
+    };
+
+    // Calculate total points based on selected items
+    Array.from(dropdownContainer.children).forEach(select => {
+        const itemType = select.value;
+        pointsEarned += pointsMap[itemType] || 0; // Add points based on item type
+    });
+
+    totalPoints += pointsEarned;
+    document.getElementById('totalPointsDisplay').innerText = `${totalPoints} Points`;
+}
+
+
+        function restartApp() {
+            document.getElementById('totalPointsPage').style.display = 'none';
+            document.getElementById('splashScreen').style.display = 'flex';
+            totalPoints = 0; // Reset points
+        }
+    </script>
+</body>
+</html>

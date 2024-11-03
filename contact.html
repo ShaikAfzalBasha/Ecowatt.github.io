@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ECOWATT</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box; /* Ensures padding and borders are included */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px; /* Add padding to the body */
+            background-color: #f4f4f4;
+        }
+
+        .contact-container {
+            max-width: 600px; /* Set a maximum width */
+            margin: 50px auto; /* Center the container */
+            padding: 20px; /* Add padding inside the container */
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 90%; /* Set the width to 90% for smaller screens */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #2e7d32;
+        }
+
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .input-field {
+            width: 100%; /* Ensures input fields take the full width of the container */
+            padding: 14px; /* Add padding for better appearance */
+            margin: 10px 0; /* Add margin for spacing between inputs */
+            border: 1px solid #ddd; /* Border style */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 1em; /* Font size */
+            display: block; /* Ensures each input takes a new line */
+        }
+
+        .button {
+            width: 100%;
+            padding: 14px;
+            background-color: #43a047;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+        }
+
+        .success-message {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda; /* Light green background */
+            color: #155724; /* Dark green text */
+            border: 1px solid #c3e6cb; /* Border style */
+            border-radius: 5px; /* Rounded corners */
+            display: none; /* Hide by default */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .back-button:hover {
+            background-color: #1b5e20;
+        }
+
+        @media (max-width: 600px) {
+            .contact-container {
+                width: 95%; /* Increase the width on smaller screens */
+                margin: 20px auto; /* Adjust margins for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <p>We’d Love to Hear From You!</p>
+        <p>At ECOWATT, we are committed to making e-waste recycling accessible and convenient for everyone. Whether you have a question, need support, or want to share feedback, our team is here to help.</p>
+        <p>Reach Out to Us Anytime:</p>
+        <p><strong>Address:</strong><br>ECOWATT Recycling Solutions<br>123 Green Avenue, Eco District, New Delhi, India</p>
+        <p><strong>Phone:</strong><br>+91-9876543210 (Mon-Fri, 9:00 AM - 6:00 PM)</p>
+        <p><strong>Email:</strong><br><a href="mailto:info@ecowatt.com">info@ecowatt.com</a></p>
+        <p>Connect with Us on Social Media:</p>
+        <p><a href="#">Facebook</a> | <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">LinkedIn</a></p>
+        <h3>Have a Question?</h3>
+        <p>Fill out our contact form below, and our support team will get back to you within 24 hours.</p>
+        <form id="contactForm" onsubmit="return handleSubmit(event)">
+            <input type="text" class="input-field" placeholder="Name" required>
+            <input type="email" class="input-field" placeholder="Email Address" required>
+            <input type="tel" class="input-field" placeholder="Phone Number" required>
+            <textarea class="input-field" placeholder="Message" required></textarea>
+            <button type="submit" class="button">Submit</button>
+        </form>
+        <div class="success-message" id="successMessage">Submitted successfully!</div>
+        <a href="index.html" class="back-button">Back to Home Page</a> <!-- Back to Login Page button -->
+    </div>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Optionally, reset the form if you want
+            document.getElementById('contactForm').reset();
+
+            return false; // Prevent form submission
+        }
+    </script>
+</body>
+</html>
